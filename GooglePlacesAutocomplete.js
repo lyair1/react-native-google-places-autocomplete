@@ -221,7 +221,7 @@ export default class GooglePlacesAutocomplete extends Component {
         return;
       }
 
-      Keyboard.dismiss();
+      // Keyboard.dismiss();
 
       this._abortRequests();
 
@@ -675,22 +675,20 @@ export default class GooglePlacesAutocomplete extends Component {
       Math.random().toString(36).substr(2, 10)
     );
 
-    if ((this.state.text !== '' || this.props.predefinedPlaces.length || this.props.currentLocation === true) && this.state.listViewDisplayed === true) {
-      return (
-        <FlatList
-          scrollEnabled={!this.props.disableScroll}
-          style={[this.props.suppressDefaultStyles ? {} : defaultStyles.listView, this.props.styles.listView]}
-          data={this.state.dataSource}
-          keyExtractor={keyGenerator}
-          extraData={[this.state.dataSource, this.props]}
-          ItemSeparatorComponent={this._renderSeparator}
-          renderItem={({ item }) => this._renderRow(item)}
-          ListHeaderComponent={this.props.renderHeaderComponent && this.props.renderHeaderComponent(this.state.text)}
-          ListFooterComponent={this._renderPoweredLogo}
-          {...this.props}
-        />
-      );
-    }
+    return (
+      <FlatList
+        scrollEnabled={!this.props.disableScroll}
+        style={[this.props.suppressDefaultStyles ? {} : defaultStyles.listView, this.props.styles.listView]}
+        data={this.state.dataSource}
+        keyExtractor={keyGenerator}
+        extraData={[this.state.dataSource, this.props]}
+        ItemSeparatorComponent={this._renderSeparator}
+        renderItem={({ item }) => this._renderRow(item)}
+        ListHeaderComponent={this.props.renderHeaderComponent && this.props.renderHeaderComponent(this.state.text)}
+        ListFooterComponent={this._renderPoweredLogo}
+        {...this.props}
+      />
+    );
 
     return null;
   }
